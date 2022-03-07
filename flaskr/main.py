@@ -55,7 +55,23 @@ def register():
 
 @app.route('/sakujyo', methods = ['POST'])
 def sakujyo():
+    # チェックボックスで選択された行番号
+    row_num_list = request.form.getlist('selected_row')
+
     con = sqlite3.connect(DATABASE)
-    for i, val in var_lists:
-        if val.get():
-            con.execute('DELETE FROM books WHERE 選択= ?,(i, , , )')
+    db_books = con.execute('SELECT * FROM books').fetchall()
+
+    # 選択されてないものだけを残す
+    new_db_books = []
+    for i, row in enumerate(db_books):
+        if str(i) not in row_num_list:
+            new_db_books.append(row)
+
+    # データベースの更新
+    con.execute('DELETE FROM books')
+    for row in new_db_books:
+        con.execute('INSERT INTO books VALUES(?,?,?)', row)
+    con.commit()
+    con.close()
+
+    return redirect(url_for('index'))
