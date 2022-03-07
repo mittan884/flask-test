@@ -27,10 +27,9 @@
         <tr>
             <form method="post" action="{{url_for('sakujyo')}}">
                 <td><input type="checkbox" name="selected_row" value="{{loop.index0}}"> </td>
-                <td>{{book.arrival_day}}</td>
+                <td>{{book.year}}年{{book.month}}月{{book.day}}日</td>
                 <td>{{book.title}}</td>
                 <td>{{book.price}}円</td>
-
         </tr>
 
         {% endfor %}

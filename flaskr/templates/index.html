@@ -22,10 +22,9 @@
 
         {% for book in books %}
         <tr>
-            <td>{{book.arrival_day}}</td>
+            <td>{{book.year}}年{{book.month}}月{{book.day}}日</td>
             <td>{{book.title}}</td>
             <td>{{book.price}}円</td>
-
         </tr>
 
         {% endfor %}
