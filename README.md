@@ -38,6 +38,7 @@ git pull
 - .gitignore
     - Gitの管理対象外のファイルを指定
 - README.md
-- setup.bat
-    - 仮想環境の`activate`
+- setup.ps1
     - 環境変数の設定
+    - 仮想環境の`activate`
+    - とりあえず今はpowershellにコピペする
