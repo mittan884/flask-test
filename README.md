@@ -31,3 +31,13 @@ git pull
 ## 公式サイト
 - [英語版](https://flask.palletsprojects.com/en/2.0.x/)
 - [日本語版](https://msiz07-flask-docs-ja.readthedocs.io/ja/latest/index.html)
+
+
+# flask-test
+- flaskr
+- .gitignore
+    - Gitの管理対象外のファイルを指定
+- README.md
+- setup.bat
+    - 仮想環境の`activate`
+    - 環境変数の設定
