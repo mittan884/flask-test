@@ -50,7 +50,7 @@ def register():
     arrival_day = request.form['arrival_day']
 
     con = sqlite3.connect(DATABASE)
-    con.execute('INSERT INTO books VALUES(?, ?,? )', ('title' ,'price' ,'arrival_day') )
+    con.execute('INSERT INTO books VALUES(?,?,?)', [title ,price ,arrival_day])
     con.commit()
     con.close()
     return redirect(url_for('index'))
