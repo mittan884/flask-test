@@ -1,6 +1,5 @@
+import re
 import sqlite3
-from importlib.resources import read_text
-from turtle import title
 
 from flask import redirect, render_template, request, url_for
 
@@ -14,12 +13,11 @@ var_lists = []
 @app.route('/')
 def index():
     con = sqlite3.connect(DATABASE)
-    db_books = con.execute('SELECT * FROM books').fetchall()
-    con.close()
+    cursor = con.execute('SELECT * FROM books')
 
-    books = []
-    for row in db_books:
-        books.append({'title': row[0], 'price': row[1], 'arrival_day': row[2]})
+    column_list = list(column[0] for column in cursor.description)
+
+    books = list(dict(zip(column_list, row)) for row in cursor)
     return render_template('index.html', books = books)
 
 
@@ -31,23 +29,32 @@ def form():
 @app.route('/kesu')
 def kesu():
     con = sqlite3.connect(DATABASE)
-    db_books = con.execute('SELECT * FROM books').fetchall()
-    con.close()
+    cursor = con.execute('SELECT * FROM books')
 
-    books = []
-    for row in db_books:
-        books.append({'title': row[0], 'price': row[1], 'arrival_day': row[2]})
+    column_list = list(column[0] for column in cursor.description)
+
+    books = list(dict(zip(column_list, row)) for row in cursor)
     return render_template('kesu.html', books = books)
 
 
 @app.route('/register', methods = ['POST'])
 def register():
-    title = request.form['title']
-    price = request.form['price']
-    arrival_day = request.form['arrival_day']
+    while True:
+        title = request.form['title']
+        price = request.form['price']
+        year = request.form['year']
+        month = request.form['month']
+        day = request.form['day']
+
+        p = re.compile('[0-9]+')
+        if all(map(p.fullmatch, (price, year, month, day))):
+            break
 
     con = sqlite3.connect(DATABASE)
-    con.execute('INSERT INTO books VALUES(?,?,?)', [title, price, arrival_day])
+    con.execute(
+        'INSERT INTO books VALUES(?,?,?,?,?)',
+        [title, price, year, month, day]
+    )
     con.commit()
     con.close()
     return redirect(url_for('index'))
@@ -70,7 +77,7 @@ def sakujyo():
     # データベースの更新
     con.execute('DELETE FROM books')
     for row in new_db_books:
-        con.execute('INSERT INTO books VALUES(?,?,?)', row)
+        con.execute('INSERT INTO books VALUES(?,?,?,?,?)', row)
     con.commit()
     con.close()
 
