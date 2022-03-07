@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>サプーアプリ</title>
+    </head>
+    <body>
+        <h1>サプー書店</h1>
+        
+    {% if books == [] %}
+        <p>今月の新刊情報はまだありません</p>
+    {% else %}
+    
+    <table border="1">
+    <tr>
+        <th>選択</th>
+        <th>入荷日</th>
+        <th>タイトル</th>
+        <th >金額</th>
+    </tr>
+
+
+    {% for book in books %}
+
+    <tr>
+        <form method="post" action="{{url_for('sakujyo')}}">
+        <td><input type="radio"> </td>
+        <td>{{book.arrival_day}}</td>
+        <td >{{book.title}}</td>
+        <td >{{book.price}}円</td>
+
+    </tr>
+
+    {% endfor %}
+</table>
+    {% endif %}
+            <br>
+            
+            <input type="submit" value="削除">
+    </form>
+    </body>
+</html>
