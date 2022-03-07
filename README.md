@@ -15,7 +15,13 @@ git commit -m "メッセージ"
 ```
 git push
 ```
-- Gitの変更履歴をGitHubに反映
+- Gitの情報をGitHubに反映
+
+## プル
+```
+git pull
+```
+- GitHubの情報をGitに反映
 
 ## `.gitignore`
 - Gitの管理対象にしないファイルを選択
