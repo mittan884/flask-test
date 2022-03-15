@@ -20,19 +20,19 @@
         </tr>
 
 
-        {% for book in books %}
+    {% for book in books %}
         <tr>
             <td>{{book.year}}年{{book.month}}月{{book.day}}日</td>
             <td>{{book.title}}</td>
             <td>{{book.price}}円</td>
         </tr>
 
-        {% endfor %}
-    </table>
+    {% endfor %}
+            </table>
     {% endif %}
-    <a href="{{ url_for('form') }}">追加</a>
-    <a href="{{ url_for('kesu') }}">削除</a>
-    <a href="{{ url_for('hennsyuu') }}">編集</a>
+            <a href="{{ url_for('form') }}">追加</a>
+            <a href="{{ url_for('kesu') }}">削除</a>
+            <a href="{{ url_for('hennsyu') }}">編集</a>
 </body>
 
 </html>

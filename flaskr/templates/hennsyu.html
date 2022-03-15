@@ -25,7 +25,7 @@
         {% for book in books %}
 
         <tr>
-            <form method="post" action="{{url_for('hennsyuu')}}">
+    <form method="post" action="{{url_for('henkou')}}">
                 <td><input  value ="{{book.year}}年{{book.month}}月{{book.day}}日"  name="selected_row" value="{{loop.index0}}"> </td>
                 <td><input  value ="{{book.title}}" name="selected_row" value="{{loop.index0}}"> </td>
                 <td><input  value ="{{book.title}}" name="selected_row" value="{{loop.index0}}"> </td>
