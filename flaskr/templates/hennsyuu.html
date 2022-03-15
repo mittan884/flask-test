@@ -8,12 +8,14 @@
 
 <body>
     <h1>サプー書店</h1>
-    <h2>今月の新刊一覧</h2>
+
     {% if books == [] %}
     <p>今月の新刊情報はまだありません</p>
     {% else %}
+
     <table border="1">
         <tr>
+            
             <th>入荷日</th>
             <th>タイトル</th>
             <th>金額</th>
@@ -21,18 +23,22 @@
 
 
         {% for book in books %}
+
         <tr>
-            <td>{{book.year}}年{{book.month}}月{{book.day}}日</td>
-            <td>{{book.title}}</td>
-            <td>{{book.price}}円</td>
+            <form method="post" action="{{url_for('hennsyuu')}}">
+                <td><input  value ="{{book.year}}年{{book.month}}月{{book.day}}日"  name="selected_row" value="{{loop.index0}}"> </td>
+                <td><input  value ="{{book.title}}" name="selected_row" value="{{loop.index0}}"> </td>
+                <td><input  value ="{{book.title}}" name="selected_row" value="{{loop.index0}}"> </td>
+
         </tr>
 
         {% endfor %}
     </table>
     {% endif %}
-    <a href="{{ url_for('form') }}">追加</a>
-    <a href="{{ url_for('kesu') }}">削除</a>
-    <a href="{{ url_for('hennsyuu') }}">編集</a>
+    <br>
+
+    <input type="submit" value="更新">
+    </form>
 </body>
 
 </html>

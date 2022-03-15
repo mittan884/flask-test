@@ -36,7 +36,14 @@ def kesu():
     books = list(dict(zip(column_list, row)) for row in cursor)
     return render_template('kesu.html', books = books)
 
-
+@app.route('/hennsyuu')
+def hennsyuu():
+    con = sqlite3.connect(DATABASE)
+    cursor = con.execute('SELECT * FROM books')
+    column_list = list(column[0] for column in cursor.description)
+    books = list(dict(zip(column_list, row)) for row in cursor)
+    return render_template('hennsyuu.html', books = books)
+    return redirect(url_for('index'))
 @app.route('/register', methods = ['POST'])
 def register():
     while True:
