@@ -19,7 +19,7 @@ def index():
 
     books = list(dict(zip(column_list, row)) for row in cursor)
     return render_template('index.html', books = books)
-
+    
 
 @app.route('/form')
 def form():
@@ -36,17 +36,16 @@ def kesu():
     books = list(dict(zip(column_list, row)) for row in cursor)
     return render_template('kesu.html', books = books)
 
-@app.route('/hennsyu')
-def hennsyu():
+@app.route('/select')
+def select():
     con = sqlite3.connect(DATABASE)
     cursor = con.execute('SELECT * FROM books')
-    column_list = list(column[0] for column in cursor.description)
+
     column_list = list(column[0] for column in cursor.description)
 
     books = list(dict(zip(column_list, row)) for row in cursor)
-    
-    return render_template('hennsyu.html', books = books)
-    
+    return render_template('select.html', books = books)
+
 
 
 @app.route('/register', methods = ['POST'])
@@ -105,10 +104,7 @@ def henkou():
     db_books = con.execute('SELECT * FROM books').fetchall()
 
     # 選択されてないものだけを残す
-    new_db_books = []
-    for i, row in enumerate(db_books):
-
-            new_db_books.append(row)
+    
 
     # データベースの更新
     con.execute('DELETE FROM books')
@@ -122,3 +118,9 @@ def henkou():
     con.close()
 
     return redirect(url_for('index'))
+
+@app.route('/change',methods = ['POST'])
+def change():
+    
+    return render_template('change.html')
+

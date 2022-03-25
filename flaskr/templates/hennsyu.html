@@ -24,10 +24,10 @@
         {% for book in books %}
         <tr>
             <form method="post" action="{{url_for('henkou')}}">
-                <td><input value="{{book.year}}" type="text" name="year">年<input value="{{book.month}}" type="text"
+                <td><input value="{{year}}" type="text" name="year">年<input value="{{month}}" type="text"
                         name="month">月<input value="{{book.day}}" type="text" name="day">日</td>
-                <td><input value="{{book.title}}" name="title" value="{{loop.index0}}"> </td>
-                <td><input value="{{book.price}}" name="price" value="{{loop.index0}}">円 </td>
+                <td><input value="{{book.title}}" name="title" v </td>
+                <td><input value="{{book.price}}" name="price" value="{{index0}}">円 </td>
         </tr>
 
         {% endfor %}

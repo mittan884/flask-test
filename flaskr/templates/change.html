@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>サプーアプリ</title>
+</head>
+
+<body>
+    <h1>サプー書店</h1>
+    <form method="post" action="{{url_for('henkou')}}">
+        <table border="1">
+            <tr>
+                <th>入荷日</th>
+                <th>タイトル</th>
+                <th>金額</th>
+            </tr>
+            <tr><!--yearがint以外だったら、のif文をいれる。フォームバリデーション-->
+            <td><input value="{{book.year}}" type="text" name="year">年<input value="{{book.month}}" type="text"
+                    name="month">月<input value="{{book.day}}" type="text" name="day">日</td>
+            <td><input value="{{book.title}}" name="title" > </td>
+            <td><input value="{{book.price}}" name="price" >円 </td>
+            </tr>
+        </table>
+        <br>
+        <input type="submit" value="登録">
+    </form>
+</body>
+
+</html>
